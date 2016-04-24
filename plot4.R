@@ -2,6 +2,8 @@
 # Author : Min-Jung wang
 # 4/23/2016
 
+#fetch data from url
+
 dataDirectory<-"household_power_consumption.txt"
 
 if (!file.exists(dataDirectory)) {
@@ -12,7 +14,7 @@ if (!file.exists(dataDirectory)) {
   unlink(tempfile)
 }
 
-
+# read table
 
 powerData <- read.table("./household_power_consumption.txt", stringsAsFactors = F ,header =TRUE, sep =';')
 
@@ -23,8 +25,12 @@ powerData$Date = date
 selectDataRange <- powerData[as.Date(date) >= as.Date("2007-02-01") & as.Date(date) <= as.Date("2007-02-02"),]
 selectDataRange$Global_active_power <- as.numeric(selectDataRange$Global_active_power)
 
+#save plot to png file
 
 png(filename = "plot4.png",width = 480, height = 480)
+
+# save 4 graphs into the plot 
+
 par(mfrow = c(2,2))
 
 plot(selectDataRange$Date, selectDataRange$Global_active_power,xlab = "", ylab = "Gloabal Active Power(kilowatts)",type = "l")
