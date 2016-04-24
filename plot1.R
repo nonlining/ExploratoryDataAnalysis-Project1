@@ -1,3 +1,17 @@
+# This R script source code is for exploratory data analysis first week project 
+# Author : Min-Jung wang
+# 4/23/2016
+
+dataDirectory<-"household_power_consumption.txt"
+
+if (!file.exists(dataDirectory)) {
+  url <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
+  tempfile <- "./tempData.zip"
+  download.file(url,tempfile)
+  unzip(tempfile)
+  unlink(tempfile)
+}
+
 
 powerData <- read.table("./household_power_consumption.txt", stringsAsFactors = F ,header =TRUE, sep =';')
 
